@@ -1,0 +1,12 @@
+**/.DS_Store
+**/.venv
+**/inventory.yml
+**/inventory.yaml
+
+**/*.gz
+**/*.tar.gz
+**/*.tar
+**/*.tgz
+**/*.pem
+**/*.key
+**/*.crt
