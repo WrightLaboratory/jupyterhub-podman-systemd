@@ -2,7 +2,19 @@
 
 ## Introduction
 
+[JupyterHub](https://jupyter.org/hub) provides for a centrally managed, multi-user JupyterLab environment.
 
+The recommended deployment requires access to a Kubernetes environment for largescale production workloads.
+One may also use Dockercompose.
+The Littlest JupyterHub provides access for small laboratory environments.
+
+This solution aims to provide a JupyterHub environment at small to medium scales on a single node.
+
+Ansible and Podman, unlike Dockercompose, allows for migration from a single node to a Kubernetes environment with minor modifications.
+
+Note, this solution uses Github Oauth for authentication.
+Configure a new GitHub account under your organization using these [instructions](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/creating-an-oauth-app).
+You will need this information to setup the `jupyterhub-secrets.yml` file.
 
 ## Prepare Ansible Management Node
 
@@ -43,12 +55,6 @@ Generate Ansible vault file containing JupyterHub configuration and secrets:
 ansible-playbook -i localhost, --connection local jupyterhub-secrets-generate.yml
 
 ansible-vault encrypt --vault-id $(id -un)@${HOME}/.ansible/vaultpassword ${HOME}/.ansible/jupyterhub-secrets.yml
-```
-
-The output will look like the following:
-
-```bash
-# OUTPUT
 ```
 
 Prepare environment for running playbook.
