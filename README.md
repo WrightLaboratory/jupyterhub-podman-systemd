@@ -83,3 +83,13 @@ ansible-playbook --user="${TARGET_USER}" \
     -i "${TARGET_FQDN}", \
     main.yml
 ```
+
+## Notes:
+
+In order to authorize github users from organization, you will need add them to the  file in `/var/lib/jupyterhub/data/jupyterhub_users.toml`
+
+This solution is incomplete.
+You must still provide a mechanism for users to place their data on the server to make it available to their single-server notebook container.
+
+When the JupyterHub Podman container creates a new container for a user, it places the user home `/home/jovyan` in `/var/lib/jupyterhub/.local/share/containers/storage/volumes/jupyterhub-user-<GitHub UserName>/_data` directory on the podman-systemd host.
+
