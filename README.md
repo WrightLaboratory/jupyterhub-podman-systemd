@@ -4,16 +4,23 @@
 
 [JupyterHub](https://jupyter.org/hub) provides for a centrally managed, multi-user JupyterLab environment.
 
-The recommended deployment requires access to a Kubernetes environment for largescale production workloads.
-One may also use Dockercompose.
-The Littlest JupyterHub provides access for small laboratory environments.
+The [Zero To JupyterHub](https://z2jh.jupyter.org/en/stable/) requires access to a Kubernetes environment for largescale production workloads.
+Some single-node deployments have used Docker Compose to implement the application and database stacks within individual container services under Docker.
+The [Littlest JupyterHub](https://tljh.jupyter.org/en/latest/) provides access for small laboratory environments through a non-containerized, conventional installation on single node.
 
-This solution aims to provide a JupyterHub environment at small to medium scales on a single node.
+This solution aims to provide a JupyterHub environment at small to medium scales on a single node using container pods. It bridges the gap between single-node and cluster deployments of JupyterHub while using standard, modern tooling.
 
-Ansible and Podman, unlike Dockercompose, allows for migration from a single node to a Kubernetes environment with minor modifications.
+Ansible and Podman, unlike Docker Compose, allows for migration from a single node to a Kubernetes environment with minor modifications.
 
-Note, this solution uses Github Oauth for authentication.
+Note, this solution uses Github OAuth for authentication.
 Configure a new GitHub account under your organization using these [instructions](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/creating-an-oauth-app).
+
+Take note of the following information when you generate this OAuth app:
+
+1. Client ID
+2. Client Secret
+3. Callback URL (Note, for JupyterHub, it will take the form `https://<ServerFQDN/hub/oauth_callback`
+
 You will need this information to setup the `jupyterhub-secrets.yml` file.
 
 ## Prepare Ansible Management Node
